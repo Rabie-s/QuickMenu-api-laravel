@@ -55,7 +55,7 @@ class User extends Authenticatable
         ];
     }
 
-        /**
+    /**
      * Get all menus created by the user
      */
     public function menus(): HasMany
@@ -63,8 +63,8 @@ class User extends Authenticatable
         return $this->hasMany(Menu::class);
     }
 
-    public function subscriptions(): HasMany
-{
-    return $this->hasMany(UserSubscription::class);
-}
+    public function userSubscriptions(): HasMany
+    {
+        return $this->hasMany(UserSubscription::class);
+    }
 }
