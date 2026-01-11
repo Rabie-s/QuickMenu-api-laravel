@@ -3,12 +3,15 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\UserSubscriptionStatus;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -61,5 +64,11 @@ class User extends Authenticatable
     public function userSubscriptions(): HasMany
     {
         return $this->hasMany(UserSubscription::class);
+    }
+
+    public function activeSubscription(): HasOne
+    {
+        return $this->hasOne(UserSubscription::class)
+            ->where('status', UserSubscriptionStatus::ACTIVE);
     }
 }
