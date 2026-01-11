@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('name');
             $table->decimal('price', 8, 2);
             $table->text('description');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->boolean('is_available')->default(true);
             $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();

@@ -47,6 +47,9 @@ class MenuController extends Controller
         return $this->respondCreated($menu);
     }
 
+
+
+
     /**
      * GET /menus/{uuid}
      * Show a single menu

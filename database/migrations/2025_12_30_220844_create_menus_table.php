@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('name');
-            $table->string('cover_image');
+            $table->string('cover_image')->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->boolean('is_available')->default(true);
             $table->timestamps();
