@@ -16,7 +16,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasFactory, Notifiable, HasApiTokens,SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -70,5 +70,11 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserSubscription::class)
             ->where('status', UserSubscriptionStatus::ACTIVE);
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status === UserSubscriptionStatus::ACTIVE
+            && (blank($this->ends_at) || $this->ends_at->isFuture());
     }
 }
