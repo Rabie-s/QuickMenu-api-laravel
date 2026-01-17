@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('phone_number', 15)->unique();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes(); 
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
