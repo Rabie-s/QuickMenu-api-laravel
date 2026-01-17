@@ -1,0 +1,11 @@
+<?php
+
+namespace App\Enums;
+
+enum ApiErrorCode:string
+{
+    case NO_ACTIVE_SUBSCRIPTION = 'NO_ACTIVE_SUBSCRIPTION';
+    case SAME_SUBSCRIPTION      = 'SAME_SUBSCRIPTION';
+    case SUBSCRIPTION_NOT_FOUND = 'SUBSCRIPTION_NOT_FOUND';
+    case MENU_LIMIT_EXCEEDED    = 'MENU_LIMIT_EXCEEDED';
+}
