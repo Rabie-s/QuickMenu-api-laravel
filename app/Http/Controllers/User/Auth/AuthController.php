@@ -23,7 +23,7 @@ class AuthController extends Controller
 
         $user = $this->userService->createUser($data);
 
-        return $this->respondCreated($user);
+        return $this->successResponse(message:'User created successfully',data:$user,statusCode:201);
     }
 
     /**
@@ -35,7 +35,7 @@ class AuthController extends Controller
 
         $result = $this->userService->login($data);
 
-        return $this->respondWithSuccess($result);
+        return $this->successResponse($result,statusCode:200);
     }
 
     /**
@@ -45,9 +45,7 @@ class AuthController extends Controller
     {
         $this->userService->logout();
 
-        return $this->respondWithSuccess([
-            'message' => 'Logged out successfully',
-        ]);
+        return $this->successResponse(message: 'Logged out successfully',statusCode:204);
     }
 
     /**
@@ -57,6 +55,6 @@ class AuthController extends Controller
     {
         $user = $this->userService->me();
 
-        return $this->respondWithSuccess($user);
+        return $this->successResponse(data:$user,statusCode:200);
     }
 }

@@ -24,7 +24,7 @@ class CategoryController extends Controller
 
         $categories = $this->categoryService->index($menuUuid, $perPage);
 
-        return $this->respondWithSuccess($categories);
+        return $this->successResponse($categories,statusCode:200);
     }
 
     /**
@@ -36,7 +36,7 @@ class CategoryController extends Controller
 
         $category = $this->categoryService->store($menuUuid, $data);
 
-        return $this->respondCreated($category);
+        return $this->successResponse($category,statusCode:201);
     }
 
     /**
@@ -46,7 +46,7 @@ class CategoryController extends Controller
     {
         $category = $this->categoryService->show($menuUuid, (int) $id);
 
-        return $this->respondWithSuccess($category);
+        return $this->successResponse($category,statusCode:200);
     }
 
     /**
@@ -62,7 +62,7 @@ class CategoryController extends Controller
             $data
         );
 
-        return $this->respondWithSuccess($category);
+        return $this->successResponse($category,statusCode:200);
     }
 
     /**
@@ -72,6 +72,6 @@ class CategoryController extends Controller
     {
         $this->categoryService->destroy($menuUuid, (int) $id);
 
-        return $this->respondNoContent();
+        return $this->successResponse(statusCode:204);
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use F9Web\ApiResponseHelpers;
+use LaraUtilX\Traits\ApiResponseTrait;
+
 
 abstract class Controller
 {
-    use ApiResponseHelpers;
-    //
+    use ApiResponseTrait;
 }

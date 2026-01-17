@@ -26,7 +26,7 @@ class MenuController extends Controller
 
         $menus = $this->menuService->index($perPage);
 
-        return $this->respondWithSuccess($menus);
+        return $this->successResponse($menus, statusCode: 200);
     }
 
     /**
@@ -44,11 +44,8 @@ class MenuController extends Controller
 
         $menu = $this->menuService->store($data);
 
-        return $this->respondCreated($menu);
+        return $this->successResponse($menu, statusCode: 201);
     }
-
-
-
 
     /**
      * GET /menus/{uuid}
@@ -58,7 +55,7 @@ class MenuController extends Controller
     {
         $menu = $this->menuService->show($uuid);
 
-        return $this->respondWithSuccess($menu);
+        return $this->successResponse($menu, statusCode: 200);
     }
 
     /**
@@ -83,7 +80,7 @@ class MenuController extends Controller
 
         $updatedMenu = $this->menuService->update($uuid, $data);
 
-        return $this->respondWithSuccess($updatedMenu);
+        return $this->successResponse($updatedMenu, statusCode: 200);
     }
 
     /**
@@ -100,6 +97,6 @@ class MenuController extends Controller
 
         $this->menuService->destroy($uuid);
 
-        return $this->respondNoContent();
+        return $this->successResponse(statusCode: 204);
     }
 }

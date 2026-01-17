@@ -29,7 +29,7 @@ class MenuItemController extends Controller
             $categoryId
         );
 
-        return $this->respondWithSuccess($items);
+        return $this->successResponse($items,statusCode:200);
     }
 
     /**
@@ -54,7 +54,7 @@ class MenuItemController extends Controller
             $data
         );
 
-        return $this->respondCreated($item);
+        return $this->successResponse($item,statusCode:201);
     }
 
     /**
@@ -72,7 +72,7 @@ class MenuItemController extends Controller
             $itemId
         );
 
-        return $this->respondWithSuccess($item);
+        return $this->successResponse($item,statusCode:200);
     }
 
     /**
@@ -110,7 +110,7 @@ class MenuItemController extends Controller
             $data
         );
 
-        return $this->respondWithSuccess($updatedItem);
+        return $this->successResponse($updatedItem,statusCode:200);
     }
 
     /**
@@ -138,6 +138,6 @@ class MenuItemController extends Controller
             $itemId
         );
 
-        return $this->respondNoContent();
+        return $this->successResponse(statusCode:204);
     }
 }
