@@ -4,7 +4,8 @@ namespace App\Observers;
 
 use App\Models\Menu;
 use App\Models\User;
-use Illuminate\Validation\ValidationException;
+use App\Enums\ApiErrorCode;
+use App\Exceptions\ApiException;
 
 class MenuObserver
 {
@@ -22,46 +23,11 @@ class MenuObserver
         $userMenuCount = $user->menus()->count();
 
         if ($userMenuCount >= $menuLimit && $menuLimit != null) {
-
-            throw ValidationException::withMessages([
-                'menu' => "You've reached your menu limit",
-            ]);
+            throw new ApiException(
+                ApiErrorCode::MENU_LIMIT_EXCEEDED->value,
+                'You have reached your menu limit.',
+                403
+            );
         }
-    }
-    /**
-     * Handle the Menu "created" event.
-     */
-    public function created(Menu $menu): void {}
-
-    /**
-     * Handle the Menu "updated" event.
-     */
-    public function updated(Menu $menu): void
-    {
-        //
-    }
-
-    /**
-     * Handle the Menu "deleted" event.
-     */
-    public function deleted(Menu $menu): void
-    {
-        //
-    }
-
-    /**
-     * Handle the Menu "restored" event.
-     */
-    public function restored(Menu $menu): void
-    {
-        //
-    }
-
-    /**
-     * Handle the Menu "force deleted" event.
-     */
-    public function forceDeleted(Menu $menu): void
-    {
-        //
     }
 }
