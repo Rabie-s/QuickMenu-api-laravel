@@ -18,6 +18,7 @@ Route::prefix('v1')->group(function () {
             require __DIR__ . '/api/v1/user/menu.php';
             require __DIR__ . '/api/v1/user/category.php';
             require __DIR__ . '/api/v1/user/menuItem.php';
+            require __DIR__ . '/api/v1/user/subscription.php';
         });
     });
 });
