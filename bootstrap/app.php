@@ -15,7 +15,13 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->api(prepend: [
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+        ]);
+
+        $middleware->validateCsrfTokens(except: [
+            '/api/*', // Add your API routes
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
 
@@ -24,16 +30,16 @@ return Application::configure(basePath: dirname(__DIR__))
         | Custom API Exceptions (with error code)
         |--------------------------------------------------------------------------
         */
-        $exceptions->render(function (ApiException  $e, $request) {
+        $exceptions->render(function (ApiException $e, $request) {
 
             if ($request->is('api/*')) {
                 return response()->json([
                     'success' => false,
-                    'code'    => $e->errorCode,
+                    'code' => $e->errorCode,
                     'message' => $e->getMessage(),
                 ], $e->getCode());
             }
         });
 
-        
+
     })->create();
