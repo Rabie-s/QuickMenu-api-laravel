@@ -12,7 +12,7 @@ Route::get('/user', function (Request $request) {
 Route::prefix('v1')->group(function () {
 
     Route::prefix('user')->group(function () {
-        
+        require __DIR__.'/api/v1/user/auth.php';
 
         Route::middleware('auth:sanctum')->group(function () {
             require __DIR__ . '/api/v1/user/menu.php';
