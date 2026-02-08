@@ -46,13 +46,10 @@ class UserService
 
     public function logout(): void
     {
-        /** @var User $user */
-        $user = Auth::user();
+        Auth::guard('web')->logout();
 
-        if ($user) {
-            // delete current token only
-            $user->currentAccessToken()->delete();
-        }
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
     }
     public function me(): ?User
     {
